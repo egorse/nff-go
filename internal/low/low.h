@@ -156,11 +156,6 @@ int defaultStart;
 bool L2CanBeChanged;
 char mempoolName[9] = "mempool1\0";
 
-__m128 zero128 = {0, 0, 0, 0};
-#ifdef RTE_MACHINE_CPUFLAG_AVX
-__m256 zero256 = {0, 0, 0, 0, 0, 0, 0, 0};
-#endif
-
 // This is multiplier for conversion from PKT/s to Mbits/s for 64 (84 in total length) packets
 const float multiplier = 84.0 * 8.0 / 1000.0 / 1000.0;
 

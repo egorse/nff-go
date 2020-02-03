@@ -1,4 +1,5 @@
 arch:
+  - arm64
   - amd64
 
 os:
@@ -16,7 +17,7 @@ services:
 before_script:
   - sudo apt-get install -y linux-headers-$(uname -r)
   - docker pull ubuntu:disco
-  - docker build --build-arg https_proxy=${https_proxy} -t test-disco .
+  - docker build --build-arg https_proxy=${https_proxy} --build-arg GOARCH=${TRAVIS_CPU_ARCH} -t test-disco .
   - docker run -it -d --privileged -v /usr/src:/usr/src -v /lib/modules:/lib/modules -v /sys/devices/system/node:/sys/devices/system/node --name test-nff-go test-disco /bin/bash
 
 script:

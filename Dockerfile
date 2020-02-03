@@ -1,6 +1,7 @@
 FROM ubuntu:disco
 
 ARG MAKEFLAGS=-j2
+ARG GOARCH
 
 ENV GOROOT /opt/go
 ENV PATH ${GOROOT}/bin:${GOPATH}/bin:${PATH}
@@ -15,7 +16,7 @@ RUN apt-get -q update && apt-get -q -y install \
     libelf-dev \
     hugepages  \
     libnuma-dev \
-    libhyperscan-dev \
+    $([ "$GOARCH" != "arm64" ] && echo libhyperscan-dev) \
     liblua5.3-dev \
     libmnl-dev \
     libibverbs-dev
